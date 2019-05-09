@@ -13,7 +13,7 @@ build:
 wordcount:
 	docker build -t hadoop-wordcount ./submit
 	docker run --network ${DOCKER_NETWORK} --env-file ${ENV_FILE} nvtienanh/hadoop-base:$(TAG) hdfs dfs -mkdir -p /input/
-	docker run --network ${DOCKER_NETWORK} --env-file ${ENV_FILE} nvtienanh/hadoop-base:$(TAG) hdfs dfs -copyFromLocal /opt/hadoop-3.1.1/README.txt /input/
+	docker run --network ${DOCKER_NETWORK} --env-file ${ENV_FILE} nvtienanh/hadoop-base:$(TAG) hdfs dfs -copyFromLocal /opt/hadoop-3.2.0/README.txt /input/
 	docker run --network ${DOCKER_NETWORK} --env-file ${ENV_FILE} hadoop-wordcount
 	docker run --network ${DOCKER_NETWORK} --env-file ${ENV_FILE} nvtienanh/hadoop-base:$(TAG) hdfs dfs -cat /output/*
 	docker run --network ${DOCKER_NETWORK} --env-file ${ENV_FILE} nvtienanh/hadoop-base:$(TAG) hdfs dfs -rm -r /output
