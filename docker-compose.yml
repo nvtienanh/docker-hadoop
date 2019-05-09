@@ -2,7 +2,7 @@ version: "3"
 
 services:
   namenode:
-    image: nvtienanh/hadoop-namenode:3.2.0-debian
+    image: nvtienanh/hadoop-namenode:${HADOOP_TAG}
     container_name: namenode
     volumes:
       - hadoop_namenode:/hadoop/dfs/name
@@ -14,7 +14,7 @@ services:
       - ./hadoop.env
 
   datanode:
-    image: nvtienanh/hadoop-datanode:3.2.0-debian
+    image: nvtienanh/hadoop-datanode:${HADOOP_TAG}
     container_name: datanode
     volumes:
       - hadoop_datanode:/hadoop/dfs/data
@@ -26,7 +26,7 @@ services:
       - ./hadoop.env
   
   resourcemanager:
-    image: nvtienanh/hadoop-resourcemanager:3.2.0-debian
+    image: nvtienanh/hadoop-resourcemanager:${HADOOP_TAG}
     container_name: resourcemanager
     environment:
       SERVICE_PRECONDITION: "namenode:9870 datanode:9864"
@@ -35,8 +35,8 @@ services:
     env_file:
       - ./hadoop.env
 
-  nodemanager:
-    image: nvtienanh/hadoop-nodemanager:3.2.0-debian
+  nodemanager1:
+    image: nvtienanh/hadoop-nodemanager:${HADOOP_TAG}
     container_name: nodemanager
     environment:
       SERVICE_PRECONDITION: "namenode:9870 datanode:9864 resourcemanager:8088"
@@ -46,7 +46,7 @@ services:
       - ./hadoop.env
   
   historyserver:
-    image: nvtienanh/hadoop-historyserver:3.2.0-debian
+    image: nvtienanh/hadoop-historyserver:${HADOOP_TAG}
     container_name: historyserver
     environment:
       SERVICE_PRECONDITION: "namenode:9870 datanode:9864 resourcemanager:8088"
