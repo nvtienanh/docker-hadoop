@@ -1,7 +1,7 @@
 DOCKER_NETWORK = hadoop-net
 ENV_FILE = hadoop.env
-HADOOP_TAG := 3.2.0-debian
-HADOOP_VERSION := 3.2.0
+HADOOP_TAG := 3.2.1-debian
+HADOOP_VERSION := 3.2.1
 
 build:
 	docker build -t nvtienanh/hadoop-base:$(HADOOP_TAG) ./base
