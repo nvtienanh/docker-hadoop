@@ -27,7 +27,7 @@ build() {
     # docker push $IMAGE
 }
 
-
+echo  $IMAGE_TAG
 build base $IMAGE_TAG $HADOOP_VERSION
 build datanode $IMAGE_TAG $HADOOP_VERSION
 build historyserver $IMAGE_TAG $HADOOP_VERSION
