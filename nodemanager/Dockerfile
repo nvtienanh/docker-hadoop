@@ -1,5 +1,5 @@
-ARG HADOOP_BASE=3.2.1-debian
-FROM nvtienanh/hadoop-base:${HADOOP_BASE}
+ARG IMAGE_TAG
+FROM nvtienanh/hadoop-base:${IMAGE_TAG}
 LABEL MAINTAINER = "Anh Nguyen <nvtienanh@gmail.com>" 
 
 HEALTHCHECK CMD curl -f http://localhost:8042/ || exit 1
