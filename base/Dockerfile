@@ -16,7 +16,7 @@ RUN apk add --no-cache openjdk8 \
     # netcat \
     gnupg \
     # wget \
-    # python \
+    bash \
     perl \
     && rm -rf /var/cache/apk/*
 
