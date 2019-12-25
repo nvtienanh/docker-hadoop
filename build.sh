@@ -24,7 +24,7 @@ build() {
      --build-arg IMAGE_TAG=$IMAGE_TAG \
      --build-arg HADOOP_VERSION=$HADOOP_VERSION .
     cd -
-    docker push $IMAGE
+    # docker push $IMAGE
 }
 
 

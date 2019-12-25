@@ -3,11 +3,14 @@ sudo: required
 services:
    - docker
 
+script: 
+   - ./build.sh
+
 before_deploy:
    - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 
 deploy:
    - provider: script
-     script: ./build.sh
+     script: ./push.sh
      on:
         branch: $TRAVIS_BRANCH
