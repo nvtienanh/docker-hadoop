@@ -16,7 +16,7 @@ RUN apk add --no-cache openjdk8 \
     # netcat \
     gnupg \
     # wget \
-    # python \
+    bash \
     perl \
     && rm -rf /var/cache/apk/*
 
@@ -34,15 +34,6 @@ RUN set -x \
     && tar -xvf /tmp/hadoop.tar.gz -C /tmp/ \
     && mv /tmp/hadoop-$HADOOP_VERSION /opt/hadoop \
     && rm /tmp/hadoop.tar.gz*
-
-# Develop mode
-# COPY hadoop-3.2.1.tar.gz /tmp/hadoop.tar.gz
-# RUN set -x \
-#     # && curl -fSL "$HADOOP_URL" -o /tmp/hadoop.tar.gz \
-#     && curl -fSL "$HADOOP_URL.asc" -o /tmp/hadoop.tar.gz.asc \
-#     && gpg --verify /tmp/hadoop.tar.gz.asc \
-#     && tar -xvf /tmp/hadoop.tar.gz -C /opt/ \
-#     && rm /tmp/hadoop.tar.gz*
 
 RUN ln -s /opt/hadoop/etc/hadoop /etc/hadoop
 RUN mkdir /opt/hadoop/logs
