@@ -24,12 +24,14 @@ build() {
      --build-arg IMAGE_TAG=$IMAGE_TAG \
      --build-arg HADOOP_VERSION=$HADOOP_VERSION .
     cd -
+    docker push $IMAGE
 }
 
 
-build base
-# build worker
-# build submit
-# build java-template template/java
-# build scala-template template/scala
-# build python-template template/python
+build base $IMAGE_TAG $HADOOP_VERSION
+build datanode $IMAGE_TAG $HADOOP_VERSION
+build historyserver $IMAGE_TAG $HADOOP_VERSION
+build namenode $IMAGE_TAG $HADOOP_VERSION
+build nodemanager $IMAGE_TAG $HADOOP_VERSION
+build resourcemanager $IMAGE_TAG $HADOOP_VERSION
+build submit $IMAGE_TAG $HADOOP_VERSION
