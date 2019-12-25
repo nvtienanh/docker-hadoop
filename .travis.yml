@@ -5,13 +5,13 @@ services:
 
 script: 
    - chmod +x build.sh
-   - ./build.sh
+   - ./build.sh $TRAVIS_BRANCH
 
 before_deploy:
    - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 
 deploy:
    - provider: script
-     script: chmod +x push.sh &&./push.sh
+     script: chmod +x push.sh && ./push.sh $TRAVIS_BRANCH
      on:
         branch: $TRAVIS_BRANCH

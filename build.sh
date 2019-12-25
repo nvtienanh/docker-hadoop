@@ -2,7 +2,13 @@
 
 set -e
 
-BRANCH=$(git rev-parse --abbrev-ref HEAD)
+if [ $# -eq 0 ]
+    then
+        BRANCH=$(git rev-parse --abbrev-ref HEAD)
+    else
+        BRANCH=$1
+fi
+
 if [ $BRANCH == "master" ]
 then
     HADOOP_VERSION="3.2.1"
