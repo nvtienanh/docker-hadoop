@@ -1,18 +1,24 @@
-FROM debian:9
+FROM alpine:3.9
 
 LABEL maintainer = "Anh Nguyen <nvtienanh@gmail.com>"
 
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-      openjdk-8-jdk \
-      net-tools \
-      curl \
-      netcat \
-      gnupg \
-      wget \
-      python \
-    && rm -rf /var/lib/apt/lists/*
-      
-ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+# Replace the apk repositories for a better performance
+RUN sed -i 's/http\:\/\/dl-cdn.alpinelinux.org/https\:\/\/alpine.global.ssl.fastly.net/g' /etc/apk/repositories
+
+# Update the package list
+RUN apk update
+
+RUN apk add --no-cache openjdk8 \
+    net-tools \
+    curl \
+    # netcat \
+    gnupg \
+    # wget \
+    # python \
+    perl \
+    && rm -rf /var/cache/apk/*
+
+ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
 
 RUN curl -O https://dist.apache.org/repos/dist/release/hadoop/common/KEYS
 
