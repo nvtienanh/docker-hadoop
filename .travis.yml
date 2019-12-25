@@ -4,7 +4,7 @@ services:
    - docker
 
 script: 
-   - chmod + x build.sh
+   - chmod +x build.sh
    - ./build.sh
 
 before_deploy:
@@ -12,6 +12,6 @@ before_deploy:
 
 deploy:
    - provider: script
-     script: chmod + x push.sh &&./push.sh
+     script: chmod +x push.sh &&./push.sh
      on:
         branch: $TRAVIS_BRANCH
