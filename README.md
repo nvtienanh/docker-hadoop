@@ -3,7 +3,7 @@
 
 **hadoop-base**
 
-[![Docker Version](https://images.microbadger.com/badges/version/nvtienanh/hadoop-base:3.2.1-alpine.svg)](https://microbadger.com/images/nvtienanh/hadoop-base:3.2.1-alpine)
+[![Docker Version](https://images.microbadger.com/badges/version/nvtienanh/hadoop-base:3.2.1-alpine.svg)](https://hub.docker.com/r/nvtienanh/hadoop-base/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/nvtienanh/hadoop-base)](https://hub.docker.com/r/nvtienanh/hadoop-base/)
 [![Docker Stars](https://img.shields.io/docker/stars/nvtienanh/hadoop-base)](https://hub.docker.com/r/nvtienanh/hadoop-base/)
 [![Docker Layers](https://img.shields.io/microbadger/layers/nvtienanh/hadoop-base/3.2.1-alpine)](https://hub.docker.com/r/nvtienanh/hadoop-base/)

@@ -38,9 +38,29 @@ deploy() {
 
 
 deploy base $IMAGE_TAG $HADOOP_VERSION
+# Update Microbadger
+curl -X POST https://hooks.microbadger.com/images/nvtienanh/hadoop-base/CA79IP9AVi0mpSaTDfi9k4POrdQ=
+
 deploy datanode $IMAGE_TAG $HADOOP_VERSION
+# Update Microbadger
+curl -X POST https://hooks.microbadger.com/images/nvtienanh/hadoop-datanode/5ywILupr2x_pM8iQHWpzuT2Vo5o=
+
 deploy historyserver $IMAGE_TAG $HADOOP_VERSION
+# Update Microbadger
+curl -X POST https://hooks.microbadger.com/images/nvtienanh/hadoop-historyserver/Nz4tPWfDxUIQOblKmoX4BD2tUDI=
+
 deploy namenode $IMAGE_TAG $HADOOP_VERSION
+# Update Microbadger
+curl -X POST https://hooks.microbadger.com/images/nvtienanh/hadoop-namenode/PUFKrZ3S64gLZZJ0CClxrzSs4DY=
+
 deploy nodemanager $IMAGE_TAG $HADOOP_VERSION
+# Update Microbadger
+curl -X POST https://hooks.microbadger.com/images/nvtienanh/hadoop-nodemanager/8WV-SL8Isz9Q33XWDBNmftzorMY=
+
 deploy resourcemanager $IMAGE_TAG $HADOOP_VERSION
-deploy submit $IMAGE_TAG $HADOOP_VERSION
+# Update Microbadger
+curl -X POST https://hooks.microbadger.com/images/nvtienanh/hadoop-resourcemanager/C4XFnEu-_78wvUSbu9zW3Ieuilk=
+
+# deploy submit $IMAGE_TAG $HADOOP_VERSION
+# # Update Microbadger
+# curl -X POST https://hooks.microbadger.com/images/nvtienanh/hadoop-base/CA79IP9AVi0mpSaTDfi9k4POrdQ=
