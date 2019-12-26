@@ -29,6 +29,8 @@ deploy() {
     docker build \
      -t $IMAGE \
      --build-arg IMAGE_TAG=$IMAGE_TAG \
+     --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
+     --build-arg VCS_REF=`git rev-parse --short HEAD` \
      --build-arg HADOOP_VERSION=$HADOOP_VERSION .
     cd -
     docker push $IMAGE

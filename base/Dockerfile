@@ -3,6 +3,16 @@ FROM alpine:3.9
 LABEL maintainer = "Anh Nguyen <nvtienanh@gmail.com>"
 
 ARG HADOOP_VERSION
+ARG BUILD_DATE
+ARG VCS_REF
+LABEL org.label-schema.build-date=$BUILD_DATE \
+        org.label-schema.name="Apache Hadoop" \
+        org.label-schema.description="Apache Hadoop docker image based on Alpine Linux" \
+        org.label-schema.vcs-ref=$VCS_REF \
+        org.label-schema.vcs-url="https://github.com/nvtienanh/docker-hadoop/tree/master/base" \
+        org.label-schema.vendor="nvtienanh" \
+        org.label-schema.version=$HADOOP_VERSION \
+        org.label-schema.schema-version="1.0"
 
 # Replace the apk repositories for a better performance
 RUN sed -i 's/http\:\/\/dl-cdn.alpinelinux.org/https\:\/\/alpine.global.ssl.fastly.net/g' /etc/apk/repositories
