@@ -23,7 +23,7 @@ RUN apk update
 RUN apk add --no-cache openjdk8 \
     net-tools \
     curl \
-    # netcat \
+    netcat-openbsd \
     gnupg \
     # wget \
     bash \
@@ -37,12 +37,22 @@ RUN curl -O https://dist.apache.org/repos/dist/release/hadoop/common/KEYS
 RUN gpg --import KEYS
 
 ENV HADOOP_URL https://www.apache.org/dist/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz
+# RUN set -x \
+#     && curl -fSL "$HADOOP_URL" -o /tmp/hadoop.tar.gz \
+#     && curl -fSL "$HADOOP_URL.asc" -o /tmp/hadoop.tar.gz.asc \
+#     && gpg --verify /tmp/hadoop.tar.gz.asc \
+#     && tar -xvf /tmp/hadoop.tar.gz -C /tmp/ \
+#     && mv /tmp/hadoop-$HADOOP_VERSION /opt/hadoop \
+#     && rm /tmp/hadoop.tar.gz*
+
+# Develop mode
+COPY hadoop-3.2.1.tar.gz /tmp/hadoop.tar.gz
 RUN set -x \
-    && curl -fSL "$HADOOP_URL" -o /tmp/hadoop.tar.gz \
+    # && curl -fSL "$HADOOP_URL" -o /tmp/hadoop.tar.gz \
     && curl -fSL "$HADOOP_URL.asc" -o /tmp/hadoop.tar.gz.asc \
     && gpg --verify /tmp/hadoop.tar.gz.asc \
     && tar -xvf /tmp/hadoop.tar.gz -C /tmp/ \
-    && mv /tmp/hadoop-$HADOOP_VERSION /opt/hadoop \
+    && mv /tmp/hadoop-$HADOOP_VERSION/ /opt/hadoop/ \
     && rm /tmp/hadoop.tar.gz*
 
 RUN ln -s /opt/hadoop/etc/hadoop /etc/hadoop
@@ -59,4 +69,4 @@ ENV PATH $HADOOP_HOME/bin/:$PATH
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod a+x /entrypoint.sh
 
-ENTRYPOINT ["/entrypoint.sh"]
+# ENTRYPOINT ["/entrypoint.sh"]
