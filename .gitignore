@@ -1,3 +1,4 @@
 data/
 *.gz
 nginx
+base/*.gz

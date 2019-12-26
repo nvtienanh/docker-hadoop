@@ -23,7 +23,7 @@ RUN apk update
 RUN apk add --no-cache openjdk8 \
     net-tools \
     curl \
-    # netcat \
+    netcat-openbsd \
     gnupg \
     # wget \
     bash \
@@ -42,7 +42,7 @@ RUN set -x \
     && curl -fSL "$HADOOP_URL.asc" -o /tmp/hadoop.tar.gz.asc \
     && gpg --verify /tmp/hadoop.tar.gz.asc \
     && tar -xvf /tmp/hadoop.tar.gz -C /tmp/ \
-    && mv /tmp/hadoop-$HADOOP_VERSION /opt/hadoop \
+    && mv /tmp/hadoop-$HADOOP_VERSION/ /opt/hadoop/ \
     && rm /tmp/hadoop.tar.gz*
 
 RUN ln -s /opt/hadoop/etc/hadoop /etc/hadoop
