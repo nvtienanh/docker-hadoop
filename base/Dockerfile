@@ -1,6 +1,4 @@
-FROM alpine:3.9
-
-LABEL maintainer = "Anh Nguyen <nvtienanh@gmail.com>"
+FROM frolvlad/alpine-java:jdk8.202.08-full
 
 ARG HADOOP_VERSION
 ARG BUILD_DATE
@@ -20,7 +18,7 @@ RUN sed -i 's/http\:\/\/dl-cdn.alpinelinux.org/https\:\/\/alpine.global.ssl.fast
 # Update the package list
 RUN apk update
 
-RUN apk add --no-cache openjdk8 \
+RUN apk add --no-cache\
     net-tools \
     curl \
     netcat-openbsd \
@@ -30,7 +28,7 @@ RUN apk add --no-cache openjdk8 \
     perl \
     && rm -rf /var/cache/apk/*
 
-ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
+# ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
 
 RUN curl -O https://dist.apache.org/repos/dist/release/hadoop/common/KEYS
 
@@ -69,4 +67,4 @@ ENV PATH $HADOOP_HOME/bin/:$PATH
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod a+x /entrypoint.sh
 
-# ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
