@@ -1,6 +1,4 @@
-FROM alpine:3.9
-
-LABEL maintainer = "Anh Nguyen <nvtienanh@gmail.com>"
+FROM nvtienanh/oracle-jdk:1.8-alpine3.9
 
 ARG HADOOP_VERSION
 ARG BUILD_DATE
