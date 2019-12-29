@@ -1,8 +1,17 @@
-ARG HADOOP_BASE=3.2.1-debian
-FROM nvtienanh/hadoop-base:${HADOOP_BASE}
-LABEL MAINTAINER = "Anh Nguyen <nvtienanh@gmail.com>" 
+ARG IMAGE_TAG
+FROM nvtienanh/hadoop-base:${IMAGE_TAG}
 
-HEALTHCHECK CMD curl -f http://localhost:8188/ || exit 1
+ARG HADOOP_VERSION
+ARG BUILD_DATE
+ARG VCS_REF
+LABEL org.label-schema.build-date=$BUILD_DATE \
+        org.label-schema.name="Apache Hadoop" \
+        org.label-schema.description="Apache Hadoop docker image based on Debian Linux" \
+        org.label-schema.vcs-ref=$VCS_REF \
+        org.label-schema.vcs-url="https://github.com/nvtienanh/docker-hadoop/tree/master/datanode" \
+        org.label-schema.vendor="nvtienanh" \
+        org.label-schema.version=$HADOOP_VERSION \
+        org.label-schema.schema-version="1.0"
 
 ENV YARN_CONF_yarn_timeline___service_leveldb___timeline___store_path=/hadoop/yarn/timeline
 RUN mkdir -p /hadoop/yarn/timeline

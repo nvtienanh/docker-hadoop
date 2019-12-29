@@ -1,24 +1,29 @@
-FROM debian:9
+FROM nvtienanh/oracle-jdk:debian9
 
-LABEL maintainer = "Anh Nguyen <nvtienanh@gmail.com>"
+ARG HADOOP_VERSION
+ARG BUILD_DATE
+ARG VCS_REF
+LABEL org.label-schema.build-date=$BUILD_DATE \
+        org.label-schema.name="Apache Hadoop" \
+        org.label-schema.description="Apache Hadoop docker image based on Debian Linux" \
+        org.label-schema.vcs-ref=$VCS_REF \
+        org.label-schema.vcs-url="https://github.com/nvtienanh/docker-hadoop/tree/master/base" \
+        org.label-schema.vendor="nvtienanh" \
+        org.label-schema.version=$HADOOP_VERSION \
+        org.label-schema.schema-version="1.0"
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-      openjdk-8-jdk \
       net-tools \
       curl \
       netcat \
       gnupg \
-      wget \
-      python \
+    #   wget \
     && rm -rf /var/lib/apt/lists/*
       
-ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 
 RUN curl -O https://dist.apache.org/repos/dist/release/hadoop/common/KEYS
 
 RUN gpg --import KEYS
-
-ENV HADOOP_VERSION 3.2.1
 
 ENV HADOOP_URL https://www.apache.org/dist/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz
 RUN set -x \
@@ -37,12 +42,12 @@ RUN set -x \
 #     && tar -xvf /tmp/hadoop.tar.gz -C /opt/ \
 #     && rm /tmp/hadoop.tar.gz*
 
-RUN ln -s /opt/hadoop-$HADOOP_VERSION/etc/hadoop /etc/hadoop
-RUN mkdir /opt/hadoop-$HADOOP_VERSION/logs
+RUN ln -s /opt/hadoop/etc/hadoop /etc/hadoop
+RUN mkdir /opt/hadoop/logs
 
 RUN mkdir /hadoop-data
 
-ENV HADOOP_HOME=/opt/hadoop-$HADOOP_VERSION
+ENV HADOOP_HOME=/opt/hadoop
 ENV HADOOP_CONF_DIR=/etc/hadoop
 ENV MULTIHOMED_NETWORK=1
 ENV USER=root
