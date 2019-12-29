@@ -1,4 +1,4 @@
-FROM nvtienanh/oracle-jdk:debian9
+FROM nvtienanh/oracle-jdk:1.8-debian9
 
 ARG HADOOP_VERSION
 ARG BUILD_DATE
