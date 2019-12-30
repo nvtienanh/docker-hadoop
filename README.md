@@ -1,69 +1,49 @@
-[![Build Status](https://travis-ci.org/nvtienanh/docker-hadoop.svg?branch=master)](https://travis-ci.org/nvtienanh/docker-hadoop)
+# Apache Hadoop
+[![CI status](https://github.com/nvtienanh/docker-hadoop/workflows/CI/badge.svg?branch=3.2.1-debian)](https://github.com/nvtienanh/docker-hadoop/actions?query=branch%3A+branch%3A3.2.1-debian++)
+
+**hadoop-base**
+
+[![Docker Version](https://images.microbadger.com/badges/version/nvtienanh/hadoop-base:3.2.1-debian.svg)](https://hub.docker.com/r/nvtienanh/hadoop-base/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/nvtienanh/hadoop-base)](https://hub.docker.com/r/nvtienanh/hadoop-base/)
+[![Docker Layers](https://img.shields.io/microbadger/layers/nvtienanh/hadoop-base/3.2.1-debian)](https://hub.docker.com/r/nvtienanh/hadoop-base/)
+
+**hadoop-datanode**
+
+[![Docker Version](https://images.microbadger.com/badges/version/nvtienanh/hadoop-datanode:3.2.1-debian.svg)](https://microbadger.com/images/nvtienanh/hadoop-datanode:3.2.1-debian)
+[![Docker Pulls](https://img.shields.io/docker/pulls/nvtienanh/hadoop-datanode)](https://hub.docker.com/r/nvtienanh/hadoop-datanode/)
+[![Docker Layers](https://img.shields.io/microbadger/layers/nvtienanh/hadoop-datanode/3.2.1-debian)](https://hub.docker.com/r/nvtienanh/hadoop-datanode/)
+
+**hadoop-historyserver**
+
+[![Docker Version](https://images.microbadger.com/badges/version/nvtienanh/hadoop-historyserver:3.2.1-debian.svg)](https://microbadger.com/images/nvtienanh/hadoop-historyserver:3.2.1-debian)
+[![Docker Pulls](https://img.shields.io/docker/pulls/nvtienanh/hadoop-historyserver)](https://hub.docker.com/r/nvtienanh/hadoop-historyserver/)
+[![Docker Layers](https://img.shields.io/microbadger/layers/nvtienanh/hadoop-historyserver/3.2.1-debian)](https://hub.docker.com/r/nvtienanh/hadoop-historyserver/)
+
+**hadoop-nodemanager**
+
+[![Docker Version](https://images.microbadger.com/badges/version/nvtienanh/hadoop-nodemanager:3.2.1-debian.svg)](https://microbadger.com/images/nvtienanh/hadoop-nodemanager:3.2.1-debian)
+[![Docker Pulls](https://img.shields.io/docker/pulls/nvtienanh/hadoop-nodemanager)](https://hub.docker.com/r/nvtienanh/hadoop-nodemanager/)
+[![Docker Layers](https://img.shields.io/microbadger/layers/nvtienanh/hadoop-nodemanager/3.2.1-debian)](https://hub.docker.com/r/nvtienanh/hadoop-nodemanager/)
+
+**hadoop-namenode**
+
+[![Docker Version](https://images.microbadger.com/badges/version/nvtienanh/hadoop-namenode:3.2.1-debian.svg)](https://microbadger.com/images/nvtienanh/hadoop-namenode:3.2.1-debian)
+[![Docker Pulls](https://img.shields.io/docker/pulls/nvtienanh/hadoop-namenode)](https://hub.docker.com/r/nvtienanh/hadoop-hadoop-namenode/)
+[![Docker Layers](https://img.shields.io/microbadger/layers/nvtienanh/hadoop-namenode/3.2.1-debian)](https://hub.docker.com/r/nvtienanh/hadoop-namenode/)
+
+**hadoop-resourcemanager**
+
+[![Docker Version](https://images.microbadger.com/badges/version/nvtienanh/hadoop-resourcemanager:3.2.1-debian.svg)](https://microbadger.com/images/nvtienanh/hadoop-resourcemanager:3.2.1-debian)
+[![Docker Pulls](https://img.shields.io/docker/pulls/nvtienanh/hadoop-resourcemanager)](https://hub.docker.com/r/nvtienanh/hadoop-hadoop-resourcemanager/)
+[![Docker Layers](https://img.shields.io/microbadger/layers/nvtienanh/hadoop-resourcemanager/3.2.1-debian)](https://hub.docker.com/r/nvtienanh/hadoop-resourcemanager/)
 
 # Changes
 
-Version 2.0.0 introduces uses wait_for_it script for the cluster startup
+- 3.2.1-debian: Docker image is using Hadoop 3.2.1 based on Debian 9
 
-# Hadoop Docker
 
-## Supported Hadoop Versions
-See repository branches for supported hadoop versions
-
-## Quick Start
-
-To deploy an example HDFS cluster, run:
-```
-  docker-compose up -d
-```
-
-Run example wordcount job:
-```
-  make wordcount
-```
-
-Or deploy in swarm:
-```
-docker stack deploy -c docker-compose-v3.yml hadoop
-```
-
-`docker-compose` creates a docker network that can be found by running `docker network list`, e.g. `dockerhadoop_default`.
-
-Run `docker network inspect` on the network (e.g. `docker-hadoop_default`) to find the IP the hadoop interfaces are published on. Access these interfaces with the following URLs:
-
-* Namenode: http://localhost:9870/dfshealth.html#tab-overview
-* History server: http://localhost:8188/applicationhistory
-* Datanode: http://localhost:9864/
-* Nodemanager: http://localhost:8042/node
-* Resource manager: http://localhost:8088/
-
-## Configure Environment Variables
-
-The configuration parameters can be specified in the hadoop.env file or as environmental variables for specific services (e.g. namenode, datanode etc.):
-```
-  CORE_CONF_fs_defaultFS=hdfs://namenode:8020
-```
-
-CORE_CONF corresponds to core-site.xml. fs_defaultFS=hdfs://namenode:8020 will be transformed into:
-```
-  <property><name>fs.defaultFS</name><value>hdfs://namenode:8020</value></property>
-```
-To define dash inside a configuration parameter, use triple underscore, such as YARN_CONF_yarn_log___aggregation___enable=true (yarn-site.xml):
-```
-  <property><name>yarn.log-aggregation-enable</name><value>true</value></property>
-```
-
-The available configurations are:
-* /etc/hadoop/core-site.xml CORE_CONF
-* /etc/hadoop/hdfs-site.xml HDFS_CONF
-* /etc/hadoop/yarn-site.xml YARN_CONF
-* /etc/hadoop/httpfs-site.xml HTTPFS_CONF
-* /etc/hadoop/kms-site.xml KMS_CONF
-* /etc/hadoop/mapred-site.xml  MAPRED_CONF
-
-If you need to extend some other configuration file, refer to base/entrypoint.sh bash script.
-
-## Liên hệ
+## Contact
 * Anh Nguyen [@nvtienanh](https://github.com/nvtienanh) 
 
-## Tham khảo
+## Reference
 * [Big Data Europe](https://github.com/big-data-europe/)
