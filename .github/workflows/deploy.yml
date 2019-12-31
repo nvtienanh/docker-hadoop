@@ -4,11 +4,9 @@ on:
   push:
     branches:
       - 3.2.1-debian
-
 jobs:
 
   deploy:
-
     runs-on: ubuntu-latest
 
     steps:
